@@ -149,7 +149,8 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
+    private int total = 54;
+    private int available = 54;
     public void updateBtns() throws Exception {
         for(int i=1; i<3; i++)
         {
@@ -168,10 +169,14 @@ public class MainActivity extends AppCompatActivity {
                         if(str.equals("1"))
                         {
                             btn1.setBackgroundColor(Color.RED);
+                            available--;
+                            availableNo.setText(String.valueOf(available));
                         }
                         else
                         {
                             btn1.setBackgroundColor(Color.GREEN);
+                            available++;
+                            availableNo.setText(String.valueOf(available));
                         }
                     }
                     in.close();
