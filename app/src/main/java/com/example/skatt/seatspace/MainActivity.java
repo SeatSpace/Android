@@ -74,8 +74,22 @@ public class MainActivity extends AppCompatActivity {
                 String[] location = str.split(",");
                 if(location[0].equals(b) && location[1].equals(f) && location[2].equals(r))
                 {
-                    totalNo.setText(location[4]);
-                    availableNo.setText(location[3]);
+                    if(Integer.parseInt(location[4]) > Integer.parseInt(location[3]))
+                    {
+                        totalNo.setText(location[4]);
+                        availableNo.setText(location[4]);
+                    }
+                    else if(Integer.parseInt(location[4]) < 0)
+                    {
+                        totalNo.setText(location[4]);
+                        availableNo.setText("0");
+                    }
+                    else
+                    {
+                        totalNo.setText(location[4]);
+                        availableNo.setText(location[3]);
+                    }
+
                 }
             }
             in.close();
