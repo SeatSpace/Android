@@ -151,32 +151,59 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateBtns() throws Exception {
-        try {
-            // Create a URL for the desired page
-            URL url = new URL("http://kkmonlee.com/launchpad/arduino1.txt"); // ###################### get real file name
-            URLConnection connection = url.openConnection();
-
-            // Read all the text returned by the server
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String str;
-
-            while ((str = in.readLine()) != null) {
-                System.out.println("STR =>> " + str);
-                if(str.equals("1"))
+        for(int i=1; i<3; i++)
+        {
+            try {
+                // Create a URL for the desired page
+                URL url = new URL("http://kkmonlee.com/launchpad/arduino" + i + ".txt"); // ###################### get real file name
+                if(i==1)
                 {
-                    btn1.setBackgroundColor(Color.RED);
+                    URLConnection connection = url.openConnection();
+
+                    // Read all the text returned by the server
+                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String str;
+
+                    while ((str = in.readLine()) != null) {
+                        if(str.equals("1"))
+                        {
+                            btn1.setBackgroundColor(Color.RED);
+                        }
+                        else
+                        {
+                            btn1.setBackgroundColor(Color.GREEN);
+                        }
+                    }
+                    in.close();
                 }
-                else
+                if(i==2)
                 {
-                    btn1.setBackgroundColor(Color.GREEN);
+                    URLConnection connection = url.openConnection();
+
+                    // Read all the text returned by the server
+                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    String str;
+
+                    while ((str = in.readLine()) != null) {
+                        if(str.equals("1"))
+                        {
+                            btn2.setBackgroundColor(Color.RED);
+                        }
+                        else
+                        {
+                            btn2.setBackgroundColor(Color.GREEN);
+                        }
+                    }
+                    in.close();
                 }
+
+            } catch (MalformedURLException e) {
+                System.out.println("YOU FUCKED UP.");
+            } catch (IOException e) {
+                System.out.println("YOU FUCKED UP.");
             }
-            in.close();
-        } catch (MalformedURLException e) {
-            System.out.println("YOU FUCKED UP.");
-        } catch (IOException e) {
-            System.out.println("YOU FUCKED UP.");
         }
+
     }
 
 }
