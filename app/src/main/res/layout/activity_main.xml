@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.skatt.seatspace.MainActivity">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="20dp"
+        tools:layout_editor_absoluteY="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/available"
+                android:layout_width="108dp"
+                android:layout_height="27dp"
+                android:text="Available Seats:"
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="36dp" />
+
+            <TextView
+            android:id="@+id/availableNo"
+            android:layout_width="108dp"
+            android:layout_height="27dp"
+            android:text=""
+            tools:layout_editor_absoluteX="47dp"
+            tools:layout_editor_absoluteY="36dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+            android:id="@+id/total"
+            android:layout_width="108dp"
+            android:layout_height="27dp"
+            android:text="Total Seats:"
+            tools:layout_editor_absoluteX="47dp"
+            tools:layout_editor_absoluteY="36dp" />
+
+            <TextView
+                android:id="@+id/totalNo"
+                android:layout_width="108dp"
+                android:layout_height="27dp"
+                android:text=""
+                tools:layout_editor_absoluteX="47dp"
+                tools:layout_editor_absoluteY="36dp" />
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
