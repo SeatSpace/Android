@@ -2,6 +2,7 @@ package com.example.skatt.seatspace;
 
 import android.content.Intent;
 import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -72,15 +73,23 @@ public class MainActivity extends AppCompatActivity {
 
             while ((str = in.readLine()) != null) {
                 String[] location = str.split(",");
+                int currentSeats = Integer.parseInt(location[3]);
+                int totalSeats = Integer.parseInt(location[4]);
                 if(location[0].equals(b) && location[1].equals(f) && location[2].equals(r))
                 {
-                    if(Integer.parseInt(location[4]) > Integer.parseInt(location[3]))
+                    if(totalSeats < currentSeats)
                     {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                        builder.setMessage("You cannot possibly leave the room.").setTitle("Room is empty");
                         totalNo.setText(location[4]);
                         availableNo.setText(location[4]);
                     }
-                    else if(Integer.parseInt(location[4]) < 0)
+                    else if(currentSeats < 0)
                     {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                        builder.setMessage("You cannot enter this room.").setTitle("Room is full");
                         totalNo.setText(location[4]);
                         availableNo.setText("0");
                     }
@@ -94,7 +103,11 @@ public class MainActivity extends AppCompatActivity {
             }
             in.close();
         } catch (MalformedURLException e) {
+            System.out.println("YOU FUCKED UP.");
+            e.printStackTrace();
         } catch (IOException e) {
+            System.out.println("YOU FUCKED UP.");
+            e.printStackTrace();
         }
     }
 }
