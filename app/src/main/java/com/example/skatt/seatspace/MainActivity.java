@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
         {
             try {
                 // Create a URL for the desired page
-                URL url = new URL("http://kkmonlee.com/launchpad/Arduino" + i + ".txt"); // ###################### get real file name
+                URL url = new URL("http://kkmonlee.com/launchpad/arduino" + i + ".txt"); // ###################### get real file name
                 URLConnection connection = url.openConnection();
 
                 // Read all the text returned by the server
