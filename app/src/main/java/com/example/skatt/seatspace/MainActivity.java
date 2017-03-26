@@ -2,7 +2,9 @@ package com.example.skatt.seatspace;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.StrictMode;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_main);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
         btn3 = (Button) findViewById(R.id.btn3);
@@ -58,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        setContentView(R.layout.activity_main);
         availableNo = (TextView) findViewById(R.id.availableNo);
         totalNo = (TextView) findViewById(R.id.totalNo);
 
@@ -150,35 +151,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void updateBtns() throws Exception {
-        for(int i=1; i<=9; i++)
-        {
-            try {
-                // Create a URL for the desired page
-                URL url = new URL("http://kkmonlee.com/launchpad/arduino" + i + ".txt"); // ###################### get real file name
-                URLConnection connection = url.openConnection();
+        try {
+            // Create a URL for the desired page
+            URL url = new URL("http://kkmonlee.com/launchpad/arduino1.txt"); // ###################### get real file name
+            URLConnection connection = url.openConnection();
 
-                // Read all the text returned by the server
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                String str;
+            // Read all the text returned by the server
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String str;
 
-                while ((str = in.readLine()) != null) {
-                    if(str.equals("1"))
-                    {
-                        buttons.get(i-1).setBackgroundColor(Color.RED);
-                    }
-                    else
-                    {
-                        buttons.get(i-1).setBackgroundColor(Color.GREEN);
-                    }
+            while ((str = in.readLine()) != null) {
+                System.out.println("STR =>> " + str);
+                if(str.equals("1"))
+                {
+                    btn1.setBackgroundColor(Color.RED);
                 }
-                in.close();
-            } catch (MalformedURLException e) {
-                System.out.println("YOU FUCKED UP.");
-                buttons.get(i-1).setBackgroundColor(Color.GREEN);
-            } catch (IOException e) {
-                System.out.println("YOU FUCKED UP.");
-                buttons.get(i-1).setBackgroundColor(Color.GREEN);
+                else
+                {
+                    btn1.setBackgroundColor(Color.GREEN);
+                }
             }
+            in.close();
+        } catch (MalformedURLException e) {
+            System.out.println("YOU FUCKED UP.");
+        } catch (IOException e) {
+            System.out.println("YOU FUCKED UP.");
         }
     }
 

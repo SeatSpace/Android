@@ -22,7 +22,7 @@ public class MainScreen extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void SearchRooms(View view)
+    public void CheckRooms(View view)
     {
         Intent i = new Intent(this, CheckRooms.class);
         startActivity(i);

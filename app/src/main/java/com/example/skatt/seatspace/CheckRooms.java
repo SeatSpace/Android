@@ -20,17 +20,20 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class CheckRooms extends AppCompatActivity {
-    TextView rooms = (TextView) findViewById(R.id.freeRooms);
+    TextView rooms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_checkrooms);
 
         addItemsOnSpinner();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-        setContentView(R.layout.activity_checkrooms);
+        rooms = (TextView) findViewById(R.id.freeRooms);
+
+        Intent i = getIntent();
     }
 
     private void addItemsOnSpinner() {
@@ -45,8 +48,9 @@ public class CheckRooms extends AppCompatActivity {
         spinner.setAdapter(dataAdapter);
     }
 
-    public void CheckRooms(View view)
+    public void SearchRooms(View view)
     {
+        rooms.setText("");
         Spinner num = (Spinner)findViewById(R.id.spinnerNo);
         int peopleNo = Integer.parseInt(num.getSelectedItem().toString());
 
