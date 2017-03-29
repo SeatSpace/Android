@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.skatt.seatspace.MainScreen">
 
-    <TableLayout
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">/>
+        android:layout_height="wrap_content"
+        android:layout_weight="0.35"
+        android:layout_margin="10dp"
+        app:srcCompat="@mipmap/ic_launcher" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+    <Button
+        android:id="@+id/SearchForSpace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.28"
+        android:onClick="RoomOption"
+        android:textAllCaps="false"
+        android:layout_margin="10dp"
+        android:background="@color/buttonBlue"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:text="Search For Spaces" />
 
-            <Button
-                android:id="@+id/SearchForSpace"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Search For Spaces"
-                android:onClick="RoomOption"/>
-        </TableRow>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <Button
+        android:id="@+id/SearchForRoom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.23"
+        android:layout_margin="10dp"
+        android:onClick="CheckRooms"
+        android:background="@color/buttonBlue"
+        android:textColor="#FFFFFF"
+        android:textAllCaps="false"
+        android:textSize="30dp"
+        android:text="Search for Rooms" />
 
-            <Button
-                android:id="@+id/SearchForRoom"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Search for Rooms"
-                android:onClick="CheckRooms"/>
-        </TableRow>
-    </TableLayout>
-</RelativeLayout>
+</LinearLayout>
