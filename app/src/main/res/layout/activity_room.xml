@@ -1,102 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="500dp"
+    android:orientation="vertical"
     tools:context="com.example.skatt.seatspace.RoomOption">
 
-    <TableLayout
+    <TextView
+        android:id="@+id/textViewB"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="20dp"
-        tools:layout_editor_absoluteY="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:textSize="30dp"
+        android:textColor="#FFFFFF"
+        android:layout_height="35dp"
+        android:text="  Building:"
+ />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+    <Spinner
+        android:id="@+id/spinnerB"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_weight="0.2"
+        android:popupBackground="@color/spinnerColor" />
 
-            <TextView
-                android:id="@+id/textViewB"
-                android:layout_width="108dp"
-                android:layout_height="27dp"
-                android:text="Building"
-                tools:layout_editor_absoluteX="47dp"
-                tools:layout_editor_absoluteY="36dp" />
-        </TableRow>
+    <TextView
+        android:id="@+id/textViewF"
+        android:textSize="30dp"
+        android:textColor="#FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:text="  Floor:" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+    <Spinner
+        android:id="@+id/spinnerF"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:popupBackground="@color/spinnerColor"
+        android:layout_weight="0.2" />
 
-            <Spinner
-                android:id="@+id/spinnerB"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </TableRow>
+    <TextView
+        android:id="@+id/textViewR"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:text="  Room:" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+    <Spinner
+        android:id="@+id/spinnerR"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:popupBackground="@color/spinnerColor"
+        android:layout_weight="0.2" />
 
-            <TextView
-                android:id="@+id/textViewF"
-                android:layout_width="108dp"
-                android:layout_height="27dp"
-                android:text="Floor"
-                tools:layout_editor_absoluteX="47dp"
-                tools:layout_editor_absoluteY="142dp" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Spinner
-                android:id="@+id/spinnerF"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <TextView
-                android:id="@+id/textViewR"
-                android:layout_width="108dp"
-                android:layout_height="27dp"
-                android:text="Room"
-                tools:layout_editor_absoluteX="47dp"
-                tools:layout_editor_absoluteY="142dp" />
-
-        </TableRow>
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Spinner
-                android:id="@+id/spinnerR"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <Button
-                android:id="@+id/button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:onClick="CheckSeats"
-                android:text="Check Seats"
-                android:layout_weight="1" />
-        </TableRow>
-
-    </TableLayout>>
-</RelativeLayout>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="100dp"
+        android:background="@drawable/button"
+        android:onClick="CheckSeats"
+        android:textSize="40dp"
+        android:textAllCaps="false"
+        android:text="Check Seats"
+        android:textColor="#FFFFFF" />
+</LinearLayout>
