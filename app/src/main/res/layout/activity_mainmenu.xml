@@ -11,8 +11,8 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.35"
         android:layout_margin="10dp"
+        android:layout_weight="1"
         app:srcCompat="@mipmap/ic_launcher" />
 
     <Button
@@ -23,9 +23,9 @@
         android:onClick="RoomOption"
         android:textAllCaps="false"
         android:layout_margin="10dp"
-        android:background="@color/buttonBlue"
+        android:background="@drawable/button"
         android:textColor="#FFFFFF"
-        android:textSize="30dp"
+        android:textSize="50dp"
         android:text="Search For Spaces" />
 
 
@@ -36,10 +36,10 @@
         android:layout_weight="0.23"
         android:layout_margin="10dp"
         android:onClick="CheckRooms"
-        android:background="@color/buttonBlue"
+        android:background="@drawable/button"
         android:textColor="#FFFFFF"
         android:textAllCaps="false"
-        android:textSize="30dp"
+        android:textSize="50dp"
         android:text="Search for Rooms" />
 
 </LinearLayout>
