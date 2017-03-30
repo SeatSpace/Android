@@ -10,17 +10,19 @@
     <TextView
         android:id="@+id/textViewB"
         android:layout_width="match_parent"
-        android:textSize="30dp"
-        android:textColor="#FFFFFF"
         android:layout_height="35dp"
         android:text="  Building:"
- />
+        android:textColor="#FFFFFF"
+        android:textSize="30dp"
+        android:layout_weight="0.03" />
 
     <Spinner
         android:id="@+id/spinnerB"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_weight="0.2"
+        android:layout_margin="20dp"
+        android:spinnerMode="dropdown"
         android:popupBackground="@color/spinnerColor" />
 
 
@@ -36,6 +38,8 @@
         android:id="@+id/spinnerF"
         android:layout_width="match_parent"
         android:layout_height="20dp"
+        android:layout_margin="20dp"
+        android:spinnerMode="dropdown"
         android:popupBackground="@color/spinnerColor"
         android:layout_weight="0.2" />
 
@@ -49,9 +53,11 @@
 
     <Spinner
         android:id="@+id/spinnerR"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:layout_weight="0.2"
+        android:spinnerMode="dropdown"
         android:popupBackground="@color/spinnerColor" />
 
     <Button
@@ -65,4 +71,13 @@
         android:textAllCaps="false"
         android:text="Check Seats"
         android:textColor="#FFFFFF" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/button"
+        android:layout_marginLeft="155dp"
+        android:layout_marginRight="155dp"
+        app:srcCompat="@drawable/home" />
 </LinearLayout>

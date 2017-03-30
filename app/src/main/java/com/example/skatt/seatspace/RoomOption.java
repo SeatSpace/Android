@@ -10,12 +10,13 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-//http://www.broculos.net/2013/09/how-to-change-spinner-text-size-color.html#.WN0W7_nyu01
+//
 
 public class RoomOption extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("Room");
         setContentView(R.layout.activity_room);
 
         addItemsOnBSpinner();
@@ -48,9 +49,10 @@ public class RoomOption extends AppCompatActivity {
         Buildings.add("Library");
         Buildings.add("1 West");
         Buildings.add("10 West");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Buildings);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RoomOption.this, R.layout.spinner_item, Buildings);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(adapter);
     }
 
     public void addItemsOnFSpinner() {
@@ -61,9 +63,13 @@ public class RoomOption extends AppCompatActivity {
         Floors.add("Floor 3");
         Floors.add("Floor 4");
         Floors.add("Floor 5");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Floors);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RoomOption.this, R.layout.spinner_item, Floors);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Floors);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(dataAdapter);
     }
 
     public void addItemsOnRSpinner() {
@@ -72,8 +78,11 @@ public class RoomOption extends AppCompatActivity {
         Rooms.add("2.101");
         Rooms.add("2.102");
         Rooms.add("2.103");
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Rooms);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(dataAdapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RoomOption.this, R.layout.spinner_item, Rooms);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Rooms);
+//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(dataAdapter);
     }
 }
