@@ -23,6 +23,7 @@
         android:layout_weight="0.2"
         android:popupBackground="@color/spinnerColor" />
 
+
     <TextView
         android:id="@+id/textViewF"
         android:textSize="30dp"
@@ -50,8 +51,8 @@
         android:id="@+id/spinnerR"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:popupBackground="@color/spinnerColor"
-        android:layout_weight="0.2" />
+        android:layout_weight="0.2"
+        android:popupBackground="@color/spinnerColor" />
 
     <Button
         android:id="@+id/button"

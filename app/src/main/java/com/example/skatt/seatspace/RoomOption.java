@@ -10,6 +10,8 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
+//http://www.broculos.net/2013/09/how-to-change-spinner-text-size-color.html#.WN0W7_nyu01
+
 public class RoomOption extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
