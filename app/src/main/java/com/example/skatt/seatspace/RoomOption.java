@@ -85,4 +85,11 @@ public class RoomOption extends AppCompatActivity {
 //        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 //        spinner.setAdapter(dataAdapter);
     }
+
+    public void home(View view)
+    {
+        Intent i = new Intent(this, MainScreen.class);
+        startActivity(i);
+    }
+
 }

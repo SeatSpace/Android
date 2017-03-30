@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         btn6 = (Button) findViewById(R.id.btn6);
         btn7 = (Button) findViewById(R.id.btn7);
         btn8 = (Button) findViewById(R.id.btn8);
-        btn9 = (Button) findViewById(R.id.btn9);
+        //btn9 = (Button) findViewById(R.id.btn9);
 
         addButtons();
         Intent i = getIntent();
@@ -209,5 +210,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-
+    public void home(View view)
+    {
+        Intent i = new Intent(this, MainScreen.class);
+        startActivity(i);
+    }
 }

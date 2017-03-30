@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="500dp"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.skatt.seatspace.RoomOption">
 
@@ -63,21 +63,21 @@
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_margin="10dp"
         android:layout_height="100dp"
+        android:layout_margin="10dp"
         android:background="@drawable/button"
         android:onClick="CheckSeats"
-        android:textSize="40dp"
-        android:textAllCaps="false"
         android:text="Check Seats"
-        android:textColor="#FFFFFF" />
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="40dp" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="match_parent"
+        android:layout_width="70dp"
         android:layout_height="70dp"
         android:background="@drawable/button"
-        android:layout_marginLeft="155dp"
-        android:layout_marginRight="155dp"
+        android:layout_gravity="center"
+        android:onClick="home"
         app:srcCompat="@drawable/home" />
 </LinearLayout>
