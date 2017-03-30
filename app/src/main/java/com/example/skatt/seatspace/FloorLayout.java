@@ -18,7 +18,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class FloorLayout extends AppCompatActivity {
 
     TextView availableNo;
     TextView totalNo;
@@ -35,12 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Button> buttons = new ArrayList<>();
 
-    int seats;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Seat Space- View");
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_floorlayout);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
         btn3 = (Button) findViewById(R.id.btn3);
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         Thread thread = new Thread(new Runnable(){
             @Override
             public void run(){
-                while(seats<20) {
+                while(true) {
                     try {
                         Thread.sleep(500);
                         runOnUiThread(new Runnable() {
@@ -212,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void home(View view)
     {
-        Intent i = new Intent(this, MainScreen.class);
+        Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
     }
 }

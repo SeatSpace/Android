@@ -1,10 +1,8 @@
 package com.example.skatt.seatspace;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -19,13 +17,13 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-public class CheckRooms extends AppCompatActivity {
+public class ListAvailableRooms extends AppCompatActivity {
     TextView rooms;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkrooms);
+        setContentView(R.layout.activity_listavailablerooms);
 
         addItemsOnSpinner();
 

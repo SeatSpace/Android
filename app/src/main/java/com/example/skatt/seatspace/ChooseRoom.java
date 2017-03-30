@@ -10,14 +10,16 @@ import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-//
+/*
+    Class Activity to select the room you wish to see the available seats for
+ */
 
-public class RoomOption extends AppCompatActivity {
+public class ChooseRoom extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Room");
-        setContentView(R.layout.activity_room);
+        setContentView(R.layout.activity_chooseroom);
 
         addItemsOnBSpinner();
         addItemsOnFSpinner();
@@ -27,6 +29,9 @@ public class RoomOption extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
     }
 
+    /*
+    Spinners with room options are called and then sent to the Main Activity Class
+     */
     public void CheckSeats(View view)
     {
         Spinner b = (Spinner)findViewById(R.id.spinnerB);
@@ -36,7 +41,7 @@ public class RoomOption extends AppCompatActivity {
         Spinner r = (Spinner)findViewById(R.id.spinnerR);
         String room = r.getSelectedItem().toString();
 
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, FloorLayout.class);
         i.putExtra("Building", building);
         i.putExtra("Floor", floor);
         i.putExtra("Room", room);
@@ -50,7 +55,7 @@ public class RoomOption extends AppCompatActivity {
         Buildings.add("1 West");
         Buildings.add("10 West");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RoomOption.this, R.layout.spinner_item, Buildings);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseRoom.this, R.layout.spinner_item, Buildings);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
@@ -63,7 +68,7 @@ public class RoomOption extends AppCompatActivity {
         Floors.add("Floor 3");
         Floors.add("Floor 4");
         Floors.add("Floor 5");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RoomOption.this, R.layout.spinner_item, Floors);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseRoom.this, R.layout.spinner_item, Floors);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -78,7 +83,7 @@ public class RoomOption extends AppCompatActivity {
         Rooms.add("2.101");
         Rooms.add("2.102");
         Rooms.add("2.103");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(RoomOption.this, R.layout.spinner_item, Rooms);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseRoom.this, R.layout.spinner_item, Rooms);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
 //        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Rooms);
@@ -88,7 +93,7 @@ public class RoomOption extends AppCompatActivity {
 
     public void home(View view)
     {
-        Intent i = new Intent(this, MainScreen.class);
+        Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
     }
 

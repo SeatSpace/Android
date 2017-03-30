@@ -6,7 +6,7 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class MainScreen extends AppCompatActivity {
+public class HomeScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,17 +15,17 @@ public class MainScreen extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        setContentView(R.layout.activity_mainmenu);
+        setContentView(R.layout.activity_homescreen);
     }
     public void RoomOption(View view)
     {
-        Intent i = new Intent(this, RoomOption.class);
+        Intent i = new Intent(this, ChooseRoom.class);
         startActivity(i);
     }
 
     public void CheckRooms(View view)
     {
-        Intent i = new Intent(this, CheckRooms.class);
+        Intent i = new Intent(this, ListAvailableRooms.class);
         startActivity(i);
     }
 }
