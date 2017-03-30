@@ -6,6 +6,9 @@ import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+/*
+Home Screen class has 2 buttons allowing you to choose how you'd like to find available space
+ */
 public class HomeScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
