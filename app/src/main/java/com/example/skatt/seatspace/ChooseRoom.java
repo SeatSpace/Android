@@ -11,7 +11,7 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 /*
-    Class Activity to select the room you wish to see the available seats for
+    ChooseRoom Class to select the room you wish to see the available seats for
  */
 
 public class ChooseRoom extends AppCompatActivity {
@@ -30,7 +30,7 @@ public class ChooseRoom extends AppCompatActivity {
     }
 
     /*
-    Spinners with room options are called and then sent to the Main Activity Class
+    Spinners with room options are called and then sent to the Floor Layout Class
      */
     public void CheckSeats(View view)
     {
@@ -48,6 +48,12 @@ public class ChooseRoom extends AppCompatActivity {
         startActivity(i);
     }
 
+    /*
+    Adding the different options to the spinners
+
+    ################ HARD CODED #####################
+
+ */
     public void addItemsOnBSpinner() {
         Spinner spinner = (Spinner) findViewById(R.id.spinnerB);
         ArrayList<String> Buildings = new ArrayList<>();
@@ -71,10 +77,6 @@ public class ChooseRoom extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseRoom.this, R.layout.spinner_item, Floors);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Floors);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(dataAdapter);
     }
 
     public void addItemsOnRSpinner() {
@@ -86,11 +88,11 @@ public class ChooseRoom extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseRoom.this, R.layout.spinner_item, Rooms);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, Rooms);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(dataAdapter);
     }
 
+    /*
+    Home button takes you back to the Home Screen form
+     */
     public void home(View view)
     {
         Intent i = new Intent(this, HomeScreen.class);

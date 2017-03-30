@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.40"
-        android:onClick="RoomOption"
+        android:onClick="ChooseRoom"
         android:textAllCaps="false"
         android:layout_margin="10dp"
 
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0.40"
         android:layout_margin="10dp"
-        android:onClick="CheckRooms"
+        android:onClick="ListAvailableRooms"
         android:background="@drawable/button"
         android:textColor="#FFFFFF"
         android:textAllCaps="false"
