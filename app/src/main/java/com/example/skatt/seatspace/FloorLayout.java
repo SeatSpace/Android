@@ -18,6 +18,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+/*
+Floor plan for the room selected in the previous form,
+updated by the Arduinos from the server
+ */
 public class FloorLayout extends AppCompatActivity {
 
     TextView availableNo;
@@ -48,7 +52,6 @@ public class FloorLayout extends AppCompatActivity {
         btn6 = (Button) findViewById(R.id.btn6);
         btn7 = (Button) findViewById(R.id.btn7);
         btn8 = (Button) findViewById(R.id.btn8);
-        //btn9 = (Button) findViewById(R.id.btn9);
 
         addButtons();
         Intent i = getIntent();
@@ -88,6 +91,11 @@ public class FloorLayout extends AppCompatActivity {
         thread.start();
     }
 
+    /*
+    ################# HARD CODED #############
+
+    Hard coded adding to array list of buttons
+     */
     private void addButtons() {
         buttons.add(btn1);
         buttons.add(btn2);
@@ -155,7 +163,7 @@ public class FloorLayout extends AppCompatActivity {
         {
             try {
                 // Create a URL for the desired page
-                URL url = new URL("http://kkmonlee.com/launchpad/arduino" + i + ".txt"); // ###################### get real file name
+                URL url = new URL("http://kkmonlee.com/launchpad/arduino1.txt");
                 if(i==1)
                 {
                     URLConnection connection = url.openConnection();
@@ -207,8 +215,10 @@ public class FloorLayout extends AppCompatActivity {
                 System.out.println("YOU FUCKED UP.");
             }
         }
-
     }
+    /*
+    Home button
+     */
     public void home(View view)
     {
         Intent i = new Intent(this, HomeScreen.class);
