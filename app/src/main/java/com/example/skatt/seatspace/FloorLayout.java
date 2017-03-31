@@ -94,10 +94,10 @@ public class FloorLayout extends AppCompatActivity {
         });
         thread.start();
     }
-
+	   
     /*
-    ################# HARD CODED #############
-
+    ################# HARD CODED ############# 
+						
     Hard coded adding to array list of buttons
      */
     private void addButtons() {
