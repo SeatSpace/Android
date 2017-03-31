@@ -57,6 +57,7 @@ public class ChooseRoom extends AppCompatActivity {
         Spinner spinner = (Spinner) findViewById(R.id.spinnerB);
         ArrayList<String> Buildings = new ArrayList<>();
         Buildings.add("Library");
+        Buildings.add("1 West");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseRoom.this, R.layout.spinner_item, Buildings);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -78,6 +79,7 @@ public class ChooseRoom extends AppCompatActivity {
     public void addItemsOnRSpinner() {
         Spinner spinner = (Spinner) findViewById(R.id.spinnerR);
         ArrayList<String> Rooms = new ArrayList<>();
+        Rooms.add("2.103");
         Rooms.add("Main Floor");
         Rooms.add("Group Study Room");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseRoom.this, R.layout.spinner_item, Rooms);
