@@ -2,6 +2,7 @@ package com.example.skatt.seatspace;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
@@ -167,17 +168,23 @@ public class FloorLayout extends AppCompatActivity {
                 String[] inputArray = str.split(",");
 
                 for (int i = 0; i < inputArray.length; i++) {
+                    // Gets the background color of the button
+                    ColorDrawable color = (ColorDrawable) buttons.get(i).getBackground();
                     if (inputArray[i].equals("1")) {
+                        // Checks if the availability has changed
+                        if(color.getColor() == Color.GREEN){
+                            available --;
+                        }
                         buttons.get(i).setBackgroundColor(Color.RED);
-                        available--;
-                        availableNo.setText(String.valueOf(available));
                     } else if (inputArray[i].equals("0")) {
+                        // Checked if the availability has changed
+                        if(color.getColor() == Color.RED){
+                            available ++;
+                        }
                         buttons.get(i).setBackgroundColor(Color.GREEN);
-                        available++;
-                        availableNo.setText(String.valueOf(available));
                     }
-
                 }
+                availableNo.setText(String.valueOf(available));
             }
             in.close();
         } catch (IOException e) {
