@@ -41,6 +41,7 @@ public class FloorLayout extends AppCompatActivity {
     ArrayList<Button> buttons = new ArrayList<>();
     private int total = 54;
     private int available = 54;
+    private Boolean running;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +68,11 @@ public class FloorLayout extends AppCompatActivity {
 
         availableNo = (TextView) findViewById(R.id.availableNo);
         totalNo = (TextView) findViewById(R.id.totalNo);
-
+        running=true;
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+                while (running) {
                     try {
                         Thread.sleep(500);
                         runOnUiThread(new Runnable() {
@@ -125,21 +126,18 @@ public class FloorLayout extends AppCompatActivity {
                 String[] location = str.split(",");
                 int currentSeats = Integer.parseInt(location[3]);
                 int totalSeats = Integer.parseInt(location[4]);
+                totalNo.setText(location[4]);
                 if (location[0].equals(b) && location[1].equals(f) && location[2].equals(r)) {
                     if (totalSeats < currentSeats) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
                         builder.setMessage("You cannot possibly leave the room.").setTitle("Room is empty");
-                        totalNo.setText(location[4]);
                         availableNo.setText(location[4]);
                     } else if (currentSeats < 0) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
                         builder.setMessage("You cannot enter this room.").setTitle("Room is full");
-                        totalNo.setText(location[4]);
                         availableNo.setText("0");
                     } else {
-                        totalNo.setText(location[4]);
                         availableNo.setText(location[3]);
                     }
                 }
@@ -172,7 +170,7 @@ public class FloorLayout extends AppCompatActivity {
                     ColorDrawable color = (ColorDrawable) buttons.get(i).getBackground();
                     if (inputArray[i].equals("1")) {
                         // Checks if the availability has changed
-                        if(color.getColor() == Color.GREEN){
+                        if(color.getColor() == getResources().getColor(R.color.roomGreen)){
                             available --;
                         }
                         buttons.get(i).setBackgroundColor(Color.RED);
@@ -181,7 +179,7 @@ public class FloorLayout extends AppCompatActivity {
                         if(color.getColor() == Color.RED){
                             available ++;
                         }
-                        buttons.get(i).setBackgroundColor(Color.GREEN);
+                        buttons.get(i).setBackgroundColor(getResources().getColor(R.color.roomGreen));
                     }
                 }
                 availableNo.setText(String.valueOf(available));
@@ -196,7 +194,9 @@ public class FloorLayout extends AppCompatActivity {
     Home button
      */
     public void home(View view) {
+        running=false;
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
+
     }
 }

@@ -19,34 +19,42 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="200px"
-            android:layout_marginBottom="100dp">
+            android:layout_marginBottom="50dp">
 
             <TextView
                 android:id="@+id/total"
                 android:layout_columnSpan="2"
                 android:layout_gravity="fill"
+                android:textSize="24dp"
+                android:textColor="#FFFFFF"
                 android:text="Total Seats:" />
 
             <TextView
                 android:id="@+id/totalNo"
                 android:layout_gravity="fill"
+                android:textSize="24dp"
+                android:textColor="#FFFFFF"
                 android:text="" />
             </TableRow>
 
             <TableRow
             android:layout_width="match_parent"
             android:layout_height="200px"
-            android:layout_marginBottom="100dp">
+            android:layout_marginBottom="50dp">
 
             <TextView
                 android:id="@+id/available"
                 android:layout_columnSpan="2"
                 android:layout_gravity="fill"
+                android:textSize="24dp"
+                android:textColor="#FFFFFF"
                 android:text="Available Seats:" />
 
             <TextView
                 android:id="@+id/availableNo"
                 android:layout_gravity="fill"
+                android:textSize="24dp"
+                android:textColor="#FFFFFF"
                 android:text="" />
 
         </TableRow>
@@ -62,14 +70,14 @@
                 android:id="@+id/btn1"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/roomGreen"
                 android:text="" />
 
             <Button
                 android:id="@+id/btn2"
                 android:layout_width="50dp"
                 android:layout_marginLeft="50dp"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/roomGreen"
                 android:text="" />
         </TableRow>
 
@@ -90,13 +98,13 @@
                 android:id="@+id/btn3"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/roomGreen"
                 android:text="" />
 
             <Button
                 android:id="@+id/btn4"
                 android:layout_marginLeft="50dp"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/roomGreen"
                 android:text="" />
         </TableRow>
 
@@ -115,13 +123,13 @@
                 android:id="@+id/btn5"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/roomGreen"
                 android:text="" />
 
             <Button
                 android:id="@+id/btn6"
                 android:layout_marginLeft="50dp"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/roomGreen"
                 android:text="" />
         </TableRow>
 
@@ -140,19 +148,14 @@
                 android:id="@+id/btn7"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/roomGreen"
                 android:text="" />
 
             <Button
                 android:id="@+id/btn8"
                 android:layout_marginLeft="50dp"
-                android:background="@android:color/holo_green_light"
+                android:background="@color/roomGreen"
                 android:text="" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
         </TableRow>
 
@@ -169,23 +172,18 @@
         // new row
 
         //---------------
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginLeft="45dp">
-
-            <ImageButton
-                android:id="@+id/imageButton"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/button"
-                android:layout_marginLeft="100dp"
-                android:onClick="home"
-                app:srcCompat="@drawable/home" />
-
-        </TableRow>
 
     </TableLayout>
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/button"
+        android:onClick="home"
+        app:srcCompat="@drawable/home"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp" />
 
 </RelativeLayout>
