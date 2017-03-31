@@ -32,13 +32,12 @@ public class ChooseRoom extends AppCompatActivity {
     /*
     Spinners with room options are called and then sent to the Floor Layout Class
      */
-    public void CheckSeats(View view)
-    {
-        Spinner b = (Spinner)findViewById(R.id.spinnerB);
+    public void CheckSeats(View view) {
+        Spinner b = (Spinner) findViewById(R.id.spinnerB);
         String building = b.getSelectedItem().toString();
-        Spinner f = (Spinner)findViewById(R.id.spinnerF);
+        Spinner f = (Spinner) findViewById(R.id.spinnerF);
         String floor = f.getSelectedItem().toString();
-        Spinner r = (Spinner)findViewById(R.id.spinnerR);
+        Spinner r = (Spinner) findViewById(R.id.spinnerR);
         String room = r.getSelectedItem().toString();
 
         Intent i = new Intent(this, FloorLayout.class);
@@ -89,8 +88,7 @@ public class ChooseRoom extends AppCompatActivity {
     /*
     Home button takes you back to the Home Screen form
      */
-    public void home(View view)
-    {
+    public void home(View view) {
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
     }

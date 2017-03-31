@@ -25,8 +25,7 @@ public class HomeScreen extends AppCompatActivity {
     Takes you to the form where you can select the Room
     to search for seats in
      */
-    public void ChooseRoom(View view)
-    {
+    public void ChooseRoom(View view) {
         Intent i = new Intent(this, ChooseRoom.class);
         startActivity(i);
     }
@@ -35,8 +34,7 @@ public class HomeScreen extends AppCompatActivity {
     Takes you to the form where you can select how many people
     you wish to work with and search for a room with that many spaces
      */
-    public void ListAvailableRooms(View view)
-    {
+    public void ListAvailableRooms(View view) {
         Intent i = new Intent(this, ListAvailableRooms.class);
         startActivity(i);
     }

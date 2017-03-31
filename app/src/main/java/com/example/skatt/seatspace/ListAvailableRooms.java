@@ -37,8 +37,7 @@ public class ListAvailableRooms extends AppCompatActivity {
     private void addItemsOnSpinner() {
         Spinner spinner = (Spinner) findViewById(R.id.spinnerNo);
         ArrayList<Integer> Numbers = new ArrayList<>();
-        for(int i=1;i<9;i++)
-        {
+        for (int i = 1; i < 9; i++) {
             Numbers.add(i);
         }
         ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, Numbers);
@@ -46,10 +45,9 @@ public class ListAvailableRooms extends AppCompatActivity {
         spinner.setAdapter(dataAdapter);
     }
 
-    public void SearchRooms(View view)
-    {
+    public void SearchRooms(View view) {
         rooms.setText("");
-        Spinner num = (Spinner)findViewById(R.id.spinnerNo);
+        Spinner num = (Spinner) findViewById(R.id.spinnerNo);
         int peopleNo = Integer.parseInt(num.getSelectedItem().toString());
 
         try {
@@ -65,8 +63,7 @@ public class ListAvailableRooms extends AppCompatActivity {
                 String[] location = str.split(",");
                 int currentSeats = Integer.parseInt(location[3]);
                 int totalSeats = Integer.parseInt(location[4]);
-                if(currentSeats >= peopleNo)
-                {
+                if (currentSeats >= peopleNo) {
                     rooms.append(str + "\n");
                 }
             }
