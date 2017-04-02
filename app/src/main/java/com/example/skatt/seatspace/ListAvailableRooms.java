@@ -27,8 +27,8 @@ public class ListAvailableRooms extends AppCompatActivity {
 
         addItemsOnSpinner();
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        //StrictMode.setThreadPolicy(policy);
         rooms = (TextView) findViewById(R.id.freeRooms);
 
         Intent i = getIntent();

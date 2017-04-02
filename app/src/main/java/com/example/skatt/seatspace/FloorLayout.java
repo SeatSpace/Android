@@ -63,9 +63,6 @@ public class FloorLayout extends AppCompatActivity {
         final String floor = i.getStringExtra("Floor");
         final String room = i.getStringExtra("Room");
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
         availableNo = (TextView) findViewById(R.id.availableNo);
         totalNo = (TextView) findViewById(R.id.totalNo);
         running=true;
@@ -73,22 +70,22 @@ public class FloorLayout extends AppCompatActivity {
             @Override
             public void run() {
                 while (running) {
-                    try {
-                        Thread.sleep(500);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                try {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                long startTime = System.currentTimeMillis();
+                                long endTime = startTime + 500;
+                                if(startTime > endTime) {
                                     getFile(building, floor, room); // put the building floor and room in to the earch
                                     updateButtons();
-                                } catch (Exception e) {
-                                    e.printStackTrace();
+                                    endTime = startTime + 500;
                                 }
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
-                        });
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                        }
+                    });
                 }
             }
         });
