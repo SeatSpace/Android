@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -65,7 +64,7 @@ public class FloorLayout extends AppCompatActivity {
 
         availableNo = (TextView) findViewById(R.id.availableNo);
         totalNo = (TextView) findViewById(R.id.totalNo);
-        running=true;
+        running = true;
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -74,9 +73,10 @@ public class FloorLayout extends AppCompatActivity {
                         @Override
                         public void run() {
                             try {
+                                // What the fuck is happening here?
                                 long startTime = System.currentTimeMillis();
                                 long endTime = startTime + 500;
-                                if(startTime > endTime) {
+                                if (startTime > endTime) {
                                     getFile(building, floor, room); // put the building floor and room in to the earch
                                     updateButtons();
                                     endTime = startTime + 500;
@@ -91,7 +91,7 @@ public class FloorLayout extends AppCompatActivity {
         });
         thread.start();
     }
-	   
+
     /*
     ################# HARD CODED ############# 
 						
@@ -167,14 +167,14 @@ public class FloorLayout extends AppCompatActivity {
                     ColorDrawable color = (ColorDrawable) buttons.get(i).getBackground();
                     if (inputArray[i].equals("1")) {
                         // Checks if the availability has changed
-                        if(color.getColor() == getResources().getColor(R.color.roomGreen)){
-                            available --;
+                        if (color.getColor() == getResources().getColor(R.color.roomGreen)) {
+                            available--;
                         }
                         buttons.get(i).setBackgroundColor(Color.RED);
                     } else if (inputArray[i].equals("0")) {
                         // Checked if the availability has changed
-                        if(color.getColor() == Color.RED){
-                            available ++;
+                        if (color.getColor() == Color.RED) {
+                            available++;
                         }
                         buttons.get(i).setBackgroundColor(getResources().getColor(R.color.roomGreen));
                     }
@@ -191,7 +191,7 @@ public class FloorLayout extends AppCompatActivity {
     Home button
      */
     public void home(View view) {
-        running=false;
+        running = false;
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
 
