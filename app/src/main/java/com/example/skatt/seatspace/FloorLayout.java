@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
 Floor plan for the room selected in the previous form,
@@ -62,30 +64,32 @@ public class FloorLayout extends AppCompatActivity {
         final String floor = i.getStringExtra("Floor");
         final String room = i.getStringExtra("Room");
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         availableNo = (TextView) findViewById(R.id.availableNo);
         totalNo = (TextView) findViewById(R.id.totalNo);
         running = true;
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (running) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                // What the fuck is happening here?
-                                long startTime = System.currentTimeMillis();
-                                long endTime = startTime + 500;
-                                if (startTime > endTime) {
+                while(running) {
+                    try {
+                        Thread.sleep(500);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
                                     getFile(building, floor, room); // put the building floor and room in to the earch
                                     updateButtons();
-                                    endTime = startTime + 500;
+                                } catch (Exception e) {
+                                    e.printStackTrace();
                                 }
-                            } catch (Exception e) {
-                                e.printStackTrace();
                             }
-                        }
-                    });
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -93,8 +97,8 @@ public class FloorLayout extends AppCompatActivity {
     }
 
     /*
-    ################# HARD CODED ############# 
-						
+    ################# HARD CODED #############
+
     Hard coded adding to array list of buttons
      */
     private void addButtons() {
@@ -118,12 +122,15 @@ public class FloorLayout extends AppCompatActivity {
             // Read all the text returned by the server
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String str;
-
+            availableNo = (TextView) findViewById(R.id.availableNo);
+            totalNo = (TextView) findViewById(R.id.totalNo);
             while ((str = in.readLine()) != null) {
+                System.out.println(str);
                 String[] location = str.split(",");
                 int currentSeats = Integer.parseInt(location[3]);
                 int totalSeats = Integer.parseInt(location[4]);
                 totalNo.setText(location[4]);
+                System.out.println(Arrays.toString(location));
                 if (location[0].equals(b) && location[1].equals(f) && location[2].equals(r)) {
                     if (totalSeats < currentSeats) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -161,20 +168,20 @@ public class FloorLayout extends AppCompatActivity {
 
             while ((str = in.readLine()) != null) {
                 String[] inputArray = str.split(",");
-
+                System.out.println(str);
                 for (int i = 0; i < inputArray.length; i++) {
                     // Gets the background color of the button
                     ColorDrawable color = (ColorDrawable) buttons.get(i).getBackground();
                     if (inputArray[i].equals("1")) {
                         // Checks if the availability has changed
-                        if (color.getColor() == getResources().getColor(R.color.roomGreen)) {
-                            available--;
+                        if(color.getColor() == getResources().getColor(R.color.roomGreen)){
+                            available --;
                         }
                         buttons.get(i).setBackgroundColor(Color.RED);
                     } else if (inputArray[i].equals("0")) {
                         // Checked if the availability has changed
-                        if (color.getColor() == Color.RED) {
-                            available++;
+                        if(color.getColor() == Color.RED){
+                            available ++;
                         }
                         buttons.get(i).setBackgroundColor(getResources().getColor(R.color.roomGreen));
                     }
@@ -191,7 +198,7 @@ public class FloorLayout extends AppCompatActivity {
     Home button
      */
     public void home(View view) {
-        running = false;
+        running=false;
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
 
