@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
 Floor plan for the room selected in the previous form,
@@ -68,11 +69,11 @@ public class FloorLayout extends AppCompatActivity {
 
         availableNo = (TextView) findViewById(R.id.availableNo);
         totalNo = (TextView) findViewById(R.id.totalNo);
-        running=true;
+        running = true;
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while (running) {
+                while(running) {
                     try {
                         Thread.sleep(500);
                         runOnUiThread(new Runnable() {
@@ -84,13 +85,14 @@ public class FloorLayout extends AppCompatActivity {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
+
                             }
                         });
-                    } catch (InterruptedException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-            }
+                }
         });
         thread.start();
     }
@@ -109,7 +111,6 @@ public class FloorLayout extends AppCompatActivity {
         buttons.add(btn6);
         buttons.add(btn7);
         buttons.add(btn8);
-        buttons.add(btn9);
     }
 
     public void getFile(String b, String f, String r) throws Exception {
@@ -121,12 +122,15 @@ public class FloorLayout extends AppCompatActivity {
             // Read all the text returned by the server
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String str;
-
+             availableNo = (TextView) findViewById(R.id.availableNo);
+             totalNo = (TextView) findViewById(R.id.totalNo);
             while ((str = in.readLine()) != null) {
+                System.out.println(str);
                 String[] location = str.split(",");
                 int currentSeats = Integer.parseInt(location[3]);
                 int totalSeats = Integer.parseInt(location[4]);
                 totalNo.setText(location[4]);
+                System.out.println(Arrays.toString(location));
                 if (location[0].equals(b) && location[1].equals(f) && location[2].equals(r)) {
                     if (totalSeats < currentSeats) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -134,7 +138,6 @@ public class FloorLayout extends AppCompatActivity {
                         availableNo.setText(location[4]);
                     } else if (currentSeats < 0) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
                         builder.setMessage("You cannot enter this room.").setTitle("Room is full");
                         availableNo.setText("0");
                     } else {
@@ -164,7 +167,7 @@ public class FloorLayout extends AppCompatActivity {
 
             while ((str = in.readLine()) != null) {
                 String[] inputArray = str.split(",");
-
+                System.out.println(str);
                 for (int i = 0; i < inputArray.length; i++) {
                     // Gets the background color of the button
                     ColorDrawable color = (ColorDrawable) buttons.get(i).getBackground();
