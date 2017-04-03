@@ -85,10 +85,9 @@ public class FloorLayout extends AppCompatActivity {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-
                             }
                         });
-                    } catch (Exception e) {
+                    } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
@@ -111,6 +110,7 @@ public class FloorLayout extends AppCompatActivity {
         buttons.add(btn6);
         buttons.add(btn7);
         buttons.add(btn8);
+        buttons.add(btn9);
     }
 
     public void getFile(String b, String f, String r) throws Exception {
@@ -138,6 +138,7 @@ public class FloorLayout extends AppCompatActivity {
                         availableNo.setText(location[4]);
                     } else if (currentSeats < 0) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
                         builder.setMessage("You cannot enter this room.").setTitle("Room is full");
                         availableNo.setText("0");
                     } else {

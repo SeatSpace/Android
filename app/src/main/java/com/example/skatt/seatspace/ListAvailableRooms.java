@@ -2,7 +2,6 @@ package com.example.skatt.seatspace;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -27,8 +26,8 @@ public class ListAvailableRooms extends AppCompatActivity {
 
         addItemsOnSpinner();
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        //StrictMode.setThreadPolicy(policy);
         rooms = (TextView) findViewById(R.id.freeRooms);
 
         Intent i = getIntent();
