@@ -23,41 +23,53 @@ public class ListAvailableRooms extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listavailablerooms);
-
         addItemsOnSpinner();
-
-        //StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        //StrictMode.setThreadPolicy(policy);
-        rooms = (TextView) findViewById(R.id.freeRooms);
-
+        //rooms = (TextView) findViewById(R.id.freeRooms);
         Intent i = getIntent();
     }
 
     private void addItemsOnSpinner() {
         Spinner spinner = (Spinner) findViewById(R.id.spinnerNo);
-        ArrayList<Integer> Numbers = new ArrayList<>();
+        ArrayList<String> Numbers = new ArrayList<>();
         for (int i = 1; i < 9; i++) {
-            Numbers.add(i);
+            Numbers.add(String.valueOf(i));
         }
-        ArrayAdapter<Integer> dataAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, Numbers);
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Numbers.add("8+");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, Numbers);
+        dataAdapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(dataAdapter);
+
+        Spinner spinner1 = (Spinner) findViewById(R.id.floorPref);
+        ArrayList<String> floors = new ArrayList<>();
+        floors.add("None");
+        for (int i = 1; i < 6; i++) {
+            floors.add("Floor "+i);
+        }
+        ArrayAdapter<String> adapater = new ArrayAdapter<String>(this, R.layout.spinner_item, floors);
+        adapater.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner1.setAdapter(adapater);
+
+        Spinner spinner2 = (Spinner) findViewById(R.id.buildingPref);
+        ArrayList<String> buildings = new ArrayList<>();
+        buildings.add("Library");
+        buildings.add("Chancellor Building");
+        adapater = new ArrayAdapter<String>(this, R.layout.spinner_item, buildings);
+        adapater.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner2.setAdapter(adapater);
+
     }
 
     public void SearchRooms(View view) {
         rooms.setText("");
         Spinner num = (Spinner) findViewById(R.id.spinnerNo);
         int peopleNo = Integer.parseInt(num.getSelectedItem().toString());
-
         try {
             // Create a URL for the desired page
             URL url = new URL("http://kkmonlee.com/launchpad/file.txt");
             URLConnection connection = url.openConnection();
-
             // Read all the text returned by the server
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String str;
-
             while ((str = in.readLine()) != null) {
                 String[] location = str.split(",");
                 int currentSeats = Integer.parseInt(location[3]);
@@ -78,4 +90,9 @@ public class ListAvailableRooms extends AppCompatActivity {
 
         // if itts >= what they want then add to array list
     }
+    public void home(View view) {
+        Intent i = new Intent(this, HomeScreen.class);
+        startActivity(i);
+    }
+
 }
