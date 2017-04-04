@@ -17,7 +17,6 @@ public class ChooseRoom extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Room");
         setContentView(R.layout.activity_chooseroom);
 
         addItemsOnBSpinner();

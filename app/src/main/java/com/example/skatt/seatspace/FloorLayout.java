@@ -47,7 +47,7 @@ public class FloorLayout extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Seat Space- View");
+        setTitle("Room View");
         setContentView(R.layout.activity_floorlayout);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
