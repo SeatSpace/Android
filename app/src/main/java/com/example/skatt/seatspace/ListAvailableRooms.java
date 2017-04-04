@@ -8,12 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class ListAvailableRooms extends AppCompatActivity {
@@ -60,36 +54,13 @@ public class ListAvailableRooms extends AppCompatActivity {
     }
 
     public void SearchRooms(View view) {
-        rooms.setText("");
-        Spinner num = (Spinner) findViewById(R.id.spinnerNo);
-        int peopleNo = Integer.parseInt(num.getSelectedItem().toString());
-        try {
-            // Create a URL for the desired page
-            URL url = new URL("http://kkmonlee.com/launchpad/file.txt");
-            URLConnection connection = url.openConnection();
-            // Read all the text returned by the server
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String str;
-            while ((str = in.readLine()) != null) {
-                String[] location = str.split(",");
-                int currentSeats = Integer.parseInt(location[3]);
-                int totalSeats = Integer.parseInt(location[4]);
-                if (currentSeats >= peopleNo) {
-                    rooms.append(str + "\n");
-                }
-            }
-            in.close();
-        } catch (MalformedURLException e) {
-            System.out.println("YOU FUCKED UP.");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("YOU FUCKED UP.");
-            e.printStackTrace();
+        Intent i = new Intent(this, PotentialRooms.class);
+        startActivity(i);
         }
         // read from the main file and return the avalaible spaces
 
         // if itts >= what they want then add to array list
-    }
+
     public void home(View view) {
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
