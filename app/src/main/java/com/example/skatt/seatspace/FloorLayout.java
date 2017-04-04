@@ -17,8 +17,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /*
 Floor plan for the room selected in the previous form,
@@ -40,6 +45,7 @@ public class FloorLayout extends AppCompatActivity {
     Button btn9;
 
     ArrayList<Button> buttons = new ArrayList<>();
+    ArrayList<Table> tables = new ArrayList<>();
     private int total = 54;
     private int available = 54;
     private Boolean running;
@@ -80,7 +86,7 @@ public class FloorLayout extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {
-                                    getFile(building, floor, room); // put the building floor and room in to the earch
+                                    getFile(building, floor, room); // put the building floor and room in to the search
                                     updateButtons();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -202,5 +208,93 @@ public class FloorLayout extends AppCompatActivity {
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
 
+    }
+
+    public void updateButtonsWithSQL() {
+        try {
+
+            for (int i = 0; i < tables.size(); i++) {
+                // Gets the background color of the button
+                ColorDrawable color = (ColorDrawable) buttons.get(i).getBackground();
+                if (tables.get(i).isTaken()) {
+                    // Checks if the availability has changed
+                    if(color.getColor() == getResources().getColor(R.color.roomGreen)){
+                        available --;
+                    }
+                    buttons.get(i).setBackgroundColor(Color.RED);
+                } else if (!tables.get(i).isTaken()) {
+                    // Checked if the availability has changed
+                    if(color.getColor() == Color.RED){
+                        available ++;
+                    }
+                    buttons.get(i).setBackgroundColor(getResources().getColor(R.color.roomGreen));
+                }
+            }
+            availableNo.setText(String.valueOf(available));
+
+        } catch (Exception e) {
+            System.out.println("YOU FUCKED UP.");
+        }
+    }
+
+
+    public void getSQLData()
+    {
+        Connection conn = null;
+        try {
+            // URL of the database and the table (kkmonlee_seatspace)
+            String url = "jdbc:mysql://74.220.219.118:3306/kkmonlee_seatspace";
+            // Starts a connection with the URL above
+            // getConnection(URL, username, password)
+            conn = DriverManager.getConnection(url, "kkmonlee_insert", "seatspace");
+            System.out.println("Database connection established");
+
+            // Create a statement object.
+            Statement statement = conn.createStatement();
+            // Make an SQL query to select everything from table Floor3
+            String query = "SELECT * FROM Floor3";
+            // Execute the query and store the results in a set
+            ResultSet rs = statement.executeQuery(query);
+            // While the next set exists...
+            while (rs.next()) {
+                // Get the 3 columns
+                String id = rs.getObject(1).toString();
+                String taken = rs.getObject(2).toString();
+                String time = rs.getObject(3).toString();
+
+                Table table = new Table(Integer.parseInt(id), Boolean.parseBoolean(taken), time);
+
+                // Linear Search algorithm
+                boolean doesExist = false;
+                for(Table t: tables){
+                    if(table.getId() == t.getId()){
+                        doesExist = true;
+                        break;
+                    }
+                    else{
+                    }
+                }
+                if(!doesExist){
+                    tables.add(table);
+                }
+
+                // And print them
+                System.out.println("ID: " + id);
+                System.out.println("Taken: " + taken);
+                System.out.println("Time: " + time);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                    System.out.println("Database connection terminated");
+                } catch (Exception ignored) {
+
+                }
+            }
+        }
     }
 }
