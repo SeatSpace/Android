@@ -5,41 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:theme="@android:style/Theme.Holo.NoActionBar"
     tools:context="com.example.skatt.seatspace.HomeScreen">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="169dp"
+        android:layout_height="200dp"
         android:layout_margin="1dp"
         app:srcCompat="@drawable/test" />
-
-    <Button
-        android:id="@+id/SearchForSpace"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.40"
-        android:onClick="ChooseRoom"
-        android:textAllCaps="false"
-        android:layout_margin="10dp"
-
-        android:background="@drawable/button"
-        android:textColor="#FFFFFF"
-        android:textSize="50dp"
-        android:text="Search For Spaces" />
-
 
     <Button
         android:id="@+id/SearchForRoom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.40"
         android:layout_margin="10dp"
-        android:onClick="ListAvailableRooms"
+        android:layout_weight="0.25"
         android:background="@drawable/button"
-        android:textColor="#FFFFFF"
+        android:onClick="ListAvailableRooms"
+        android:text="Find me               a space"
         android:textAllCaps="false"
-        android:textSize="50dp"
-        android:text="Search for Rooms" />
+        android:textColor="#FFFFFF"
+        android:textSize="50dp" />
+
+    <Button
+        android:id="@+id/SearchForSpace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_weight="0.25"
+        android:background="@drawable/button"
+        android:onClick="ChooseRoom"
+        android:text="View a        Room"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp" />
+
 
 </LinearLayout>

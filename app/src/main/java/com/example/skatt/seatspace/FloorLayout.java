@@ -47,7 +47,7 @@ public class FloorLayout extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("Seat Space- View");
+        setTitle("Room View");
         setContentView(R.layout.activity_floorlayout);
         btn1 = (Button) findViewById(R.id.btn1);
         btn2 = (Button) findViewById(R.id.btn2);
@@ -91,7 +91,7 @@ public class FloorLayout extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                }
+            }
         });
         thread.start();
     }
@@ -122,8 +122,8 @@ public class FloorLayout extends AppCompatActivity {
             // Read all the text returned by the server
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String str;
-             availableNo = (TextView) findViewById(R.id.availableNo);
-             totalNo = (TextView) findViewById(R.id.totalNo);
+            availableNo = (TextView) findViewById(R.id.availableNo);
+            totalNo = (TextView) findViewById(R.id.totalNo);
             while ((str = in.readLine()) != null) {
                 System.out.println(str);
                 String[] location = str.split(",");

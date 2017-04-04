@@ -13,7 +13,6 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setTitle("Menu");
-
         setContentView(R.layout.activity_homescreen);
     }
 
