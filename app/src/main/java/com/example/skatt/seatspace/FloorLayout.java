@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /*
 Floor plan for the room selected in the previous form,
@@ -42,7 +43,6 @@ public class FloorLayout extends AppCompatActivity {
     private int total = 54;
     private int available = 54;
     private Boolean running;
-    private Thread thread;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +70,7 @@ public class FloorLayout extends AppCompatActivity {
         availableNo = (TextView) findViewById(R.id.availableNo);
         totalNo = (TextView) findViewById(R.id.totalNo);
         running = true;
-        thread = new Thread(new Runnable() {
+        Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while(running) {
@@ -94,7 +94,6 @@ public class FloorLayout extends AppCompatActivity {
             }
         });
         thread.start();
-
     }
 
     /*
@@ -126,10 +125,12 @@ public class FloorLayout extends AppCompatActivity {
             availableNo = (TextView) findViewById(R.id.availableNo);
             totalNo = (TextView) findViewById(R.id.totalNo);
             while ((str = in.readLine()) != null) {
+                System.out.println(str);
                 String[] location = str.split(",");
                 int currentSeats = Integer.parseInt(location[3]);
                 int totalSeats = Integer.parseInt(location[4]);
                 totalNo.setText(location[4]);
+                System.out.println(Arrays.toString(location));
                 if (location[0].equals(b) && location[1].equals(f) && location[2].equals(r)) {
                     if (totalSeats < currentSeats) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -167,6 +168,7 @@ public class FloorLayout extends AppCompatActivity {
 
             while ((str = in.readLine()) != null) {
                 String[] inputArray = str.split(",");
+                System.out.println(str);
                 for (int i = 0; i < inputArray.length; i++) {
                     // Gets the background color of the button
                     ColorDrawable color = (ColorDrawable) buttons.get(i).getBackground();
@@ -197,7 +199,6 @@ public class FloorLayout extends AppCompatActivity {
      */
     public void home(View view) {
         running=false;
-        thread.interrupt();
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
 
