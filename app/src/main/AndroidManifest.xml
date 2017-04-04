@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.skatt.seatspace">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,13 +14,14 @@
         <activity android:name=".HomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".FloorLayout"></activity>
-        <activity android:name=".ChooseRoom"></activity>
-        <activity android:name=".ListAvailableRooms"></activity>
-
+        <activity android:name=".FloorLayout" />
+        <activity android:name=".ChooseRoom" />
+        <activity android:name=".ListAvailableRooms" />
+        <activity android:name=".PotentialRooms"></activity>
     </application>
 
 </manifest>
