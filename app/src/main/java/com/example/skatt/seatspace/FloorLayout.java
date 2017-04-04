@@ -213,16 +213,19 @@ public class FloorLayout extends AppCompatActivity {
     public void updateButtonsWithSQL() {
         try {
 
+            // loop through the arraylist of tables
             for (int i = 0; i < tables.size(); i++) {
                 // Gets the background color of the button
                 ColorDrawable color = (ColorDrawable) buttons.get(i).getBackground();
+                // if the table's taken boolean is true then change to red
                 if (tables.get(i).isTaken()) {
                     // Checks if the availability has changed
                     if(color.getColor() == getResources().getColor(R.color.roomGreen)){
                         available --;
                     }
                     buttons.get(i).setBackgroundColor(Color.RED);
-                } else if (!tables.get(i).isTaken()) {
+
+                } else if (!tables.get(i).isTaken()) { // if the table's taken boolean is false then change to green
                     // Checked if the availability has changed
                     if(color.getColor() == Color.RED){
                         available ++;
