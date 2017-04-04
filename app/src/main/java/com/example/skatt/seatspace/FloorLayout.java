@@ -17,8 +17,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 /*
 Floor plan for the room selected in the previous form,
@@ -40,6 +45,7 @@ public class FloorLayout extends AppCompatActivity {
     Button btn9;
 
     ArrayList<Button> buttons = new ArrayList<>();
+    ArrayList<Table> tables = new ArrayList<>();
     private int total = 54;
     private int available = 54;
     private Boolean running;
@@ -80,7 +86,7 @@ public class FloorLayout extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {
-                                    getFile(building, floor, room); // put the building floor and room in to the earch
+                                    getFile(building, floor, room); // put the building floor and room in to the search
                                     updateButtons();
                                 } catch (Exception e) {
                                     e.printStackTrace();
@@ -166,6 +172,8 @@ public class FloorLayout extends AppCompatActivity {
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String str;
 
+            // getSQLData for the
+
             while ((str = in.readLine()) != null) {
                 String[] inputArray = str.split(",");
                 System.out.println(str);
@@ -202,5 +210,54 @@ public class FloorLayout extends AppCompatActivity {
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
 
+    }
+
+    public void getSQLData()
+    {
+        Connection conn = null;
+        try {
+            // URL of the database and the table (kkmonlee_seatspace)
+            String url = "jdbc:mysql://74.220.219.118:3306/kkmonlee_seatspace";
+            // Starts a connection with the URL above
+            // getConnection(URL, username, password)
+            conn = DriverManager.getConnection(url, "kkmonlee_insert", "seatspace");
+            System.out.println("Database connection established");
+
+            // Create a statement object.
+            Statement statement = conn.createStatement();
+            // Make an SQL query to select everything from table Floor3
+            String query = "SELECT * FROM Floor3";
+            // Execute the query and store the results in a set
+            ResultSet rs = statement.executeQuery(query);
+            // While the next set exists...
+            while (rs.next()) {
+                // Get the 3 columns
+                String id = rs.getObject(1).toString();
+                String taken = rs.getObject(2).toString();
+                String time = rs.getObject(3).toString();
+
+
+                // BINARY SEARCH GOES HRE
+
+                // loop through array list of arduinos and if id exist
+
+                // And print them
+                System.out.println("ID: " + id);
+                System.out.println("Taken: " + taken);
+                System.out.println("Time: " + time);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                    System.out.println("Database connection terminated");
+                } catch (Exception ignored) {
+
+                }
+            }
+        }
     }
 }
