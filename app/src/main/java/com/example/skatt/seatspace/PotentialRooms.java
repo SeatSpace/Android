@@ -1,7 +1,9 @@
 package com.example.skatt.seatspace;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class PotentialRooms extends AppCompatActivity {
 
@@ -10,4 +12,16 @@ public class PotentialRooms extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_potential_rooms);
     }
+
+    public void view(View view) {
+        Intent i = new Intent(this, FloorLayout.class);
+        startActivity(i);
+    }
+
+
+    public void home(View view) {
+        Intent i = new Intent(this, HomeScreen.class);
+        startActivity(i);
+    }
+
 }
