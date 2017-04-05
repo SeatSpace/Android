@@ -22,8 +22,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+
+import com.mysql.jdbc.*;
 
 /*
 Floor plan for the room selected in the previous form,
@@ -49,10 +49,13 @@ public class FloorLayout extends AppCompatActivity {
     private int total = 54;
     private int available = 54;
     private Boolean running;
+    private Thread thread;
+    private BufferedReader in;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSQLData();
         setTitle("Room View");
         setContentView(R.layout.activity_floorlayout);
         btn1 = (Button) findViewById(R.id.btn1);
@@ -76,10 +79,10 @@ public class FloorLayout extends AppCompatActivity {
         availableNo = (TextView) findViewById(R.id.availableNo);
         totalNo = (TextView) findViewById(R.id.totalNo);
         running = true;
-        Thread thread = new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                while(running) {
+                while (running) {
                     try {
                         Thread.sleep(500);
                         runOnUiThread(new Runnable() {
@@ -131,12 +134,12 @@ public class FloorLayout extends AppCompatActivity {
             availableNo = (TextView) findViewById(R.id.availableNo);
             totalNo = (TextView) findViewById(R.id.totalNo);
             while ((str = in.readLine()) != null) {
-                System.out.println(str);
+                //System.out.println(str);
                 String[] location = str.split(",");
                 int currentSeats = Integer.parseInt(location[3]);
                 int totalSeats = Integer.parseInt(location[4]);
                 totalNo.setText(location[4]);
-                System.out.println(Arrays.toString(location));
+                //System.out.println(Arrays.toString(location));
                 if (location[0].equals(b) && location[1].equals(f) && location[2].equals(r)) {
                     if (totalSeats < currentSeats) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -169,25 +172,25 @@ public class FloorLayout extends AppCompatActivity {
             URLConnection connection = url.openConnection();
 
             // Read all the text returned by the server
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String str;
 
             while ((str = in.readLine()) != null) {
                 String[] inputArray = str.split(",");
-                System.out.println(str);
+                //System.out.println(str);
                 for (int i = 0; i < inputArray.length; i++) {
                     // Gets the background color of the button
                     ColorDrawable color = (ColorDrawable) buttons.get(i).getBackground();
                     if (inputArray[i].equals("1")) {
                         // Checks if the availability has changed
-                        if(color.getColor() == getResources().getColor(R.color.roomGreen)){
-                            available --;
+                        if (color.getColor() == getResources().getColor(R.color.roomGreen)) {
+                            available--;
                         }
                         buttons.get(i).setBackgroundColor(Color.RED);
                     } else if (inputArray[i].equals("0")) {
                         // Checked if the availability has changed
-                        if(color.getColor() == Color.RED){
-                            available ++;
+                        if (color.getColor() == Color.RED) {
+                            available++;
                         }
                         buttons.get(i).setBackgroundColor(getResources().getColor(R.color.roomGreen));
                     }
@@ -204,7 +207,10 @@ public class FloorLayout extends AppCompatActivity {
     Home button
      */
     public void home(View view) {
-        running=false;
+        System.out.println("asdf");
+        running = false;
+        finish();
+        //thread.interrupt();
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
 
@@ -220,84 +226,89 @@ public class FloorLayout extends AppCompatActivity {
                 // if the table's taken boolean is true then change to red
                 if (tables.get(i).isTaken()) {
                     // Checks if the availability has changed
-                    if(color.getColor() == getResources().getColor(R.color.roomGreen)){
-                        available --;
+                    if (color.getColor() == getResources().getColor(R.color.roomGreen)) {
+                        available--;
                     }
                     buttons.get(i).setBackgroundColor(Color.RED);
 
                 } else if (!tables.get(i).isTaken()) { // if the table's taken boolean is false then change to green
                     // Checked if the availability has changed
-                    if(color.getColor() == Color.RED){
-                        available ++;
+                    if (color.getColor() == Color.RED) {
+                        available++;
                     }
                     buttons.get(i).setBackgroundColor(getResources().getColor(R.color.roomGreen));
                 }
             }
             availableNo.setText(String.valueOf(available));
-
         } catch (Exception e) {
             System.out.println("YOU FUCKED UP.");
         }
     }
 
 
-    public void getSQLData()
-    {
-        Connection conn = null;
-        try {
-            // URL of the database and the table (kkmonlee_seatspace)
-            String url = "jdbc:mysql://74.220.219.118:3306/kkmonlee_seatspace";
-            // Starts a connection with the URL above
-            // getConnection(URL, username, password)
-            conn = DriverManager.getConnection(url, "kkmonlee_insert", "seatspace");
-            System.out.println("Database connection established");
-
-            // Create a statement object.
-            Statement statement = conn.createStatement();
-            // Make an SQL query to select everything from table Floor3
-            String query = "SELECT * FROM Floor3";
-            // Execute the query and store the results in a set
-            ResultSet rs = statement.executeQuery(query);
-            // While the next set exists...
-            while (rs.next()) {
-                // Get the 3 columns
-                String id = rs.getObject(1).toString();
-                String taken = rs.getObject(2).toString();
-                String time = rs.getObject(3).toString();
-
-                Table table = new Table(Integer.parseInt(id), Boolean.parseBoolean(taken), time);
-
-                // Linear Search algorithm
-                boolean doesExist = false;
-                for(Table t: tables){
-                    if(table.getId() == t.getId()){
-                        doesExist = true;
-                        break;
-                    }
-                    else{
-                    }
-                }
-                if(!doesExist){
-                    tables.add(table);
-                }
-
-                // And print them
-                System.out.println("ID: " + id);
-                System.out.println("Taken: " + taken);
-                System.out.println("Time: " + time);
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (conn != null) {
+    public void getSQLData() {
+        //Its in a thread because android studio is a bitch
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Connection conn = null;
                 try {
-                    conn.close();
-                    System.out.println("Database connection terminated");
-                } catch (Exception ignored) {
+                    // URL of the database and the table (kkmonlee_seatspace)
+                    String url = "jdbc:mysql://74.220.219.118:3306/kkmonlee_seatspace";
+                    // Starts a connection with the URL above
+                    // getConnection(URL, username, password)
+                    Class.forName("com.mysql.jdbc.Driver");
+                    conn = DriverManager.getConnection(url, "kkmonlee_insert", "seatspace");
+                    System.out.println("Database connection established");
 
+                    // Create a statement object.
+                    Statement statement = conn.createStatement();
+                    // Make an SQL query to select everything from table Floor3
+                    String query = "SELECT * FROM Floor3";
+                    // Execute the query and store the results in a set
+                    ResultSet rs = statement.executeQuery(query);
+                    // While the next set exists...
+                    while (rs.next()) {
+                        // Get the 3 columns
+                        String id = rs.getObject(1).toString();
+                        String taken = rs.getObject(2).toString();
+                        String time = rs.getObject(3).toString();
+
+                        Table table = new Table(Integer.parseInt(id), Boolean.parseBoolean(taken), time);
+
+                        // Linear Search algorithm
+                        boolean doesExist = false;
+                        for (Table t : tables) {
+                            if (table.getId() == t.getId()) {
+                                doesExist = true;
+                                break;
+                            } else {
+                            }
+                        }
+                        if (!doesExist) {
+                            tables.add(table);
+                        }
+
+                        // And print them
+                        System.out.println("ID: " + id);
+                        System.out.println("Taken: " + taken);
+                        System.out.println("Time: " + time);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (conn != null) {
+                        try {
+                            conn.close();
+                            System.out.println("Database connection terminated");
+                        } catch (Exception ignored) {
+
+                        }
+                    }
                 }
             }
-        }
+        });
+        thread.start();
     }
 }
