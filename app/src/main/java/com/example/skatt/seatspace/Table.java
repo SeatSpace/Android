@@ -4,6 +4,7 @@ public class Table {
     private int id;
     private boolean isTaken;
     private String time;
+
     public Table(int ID, boolean IsTaken, String timeStamp) {
         this.id = ID;
         this.isTaken = IsTaken;

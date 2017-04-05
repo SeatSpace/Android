@@ -37,7 +37,7 @@ public class ListAvailableRooms extends AppCompatActivity {
         ArrayList<String> floors = new ArrayList<>();
         floors.add("None");
         for (int i = 1; i < 6; i++) {
-            floors.add("Floor "+i);
+            floors.add("Floor " + i);
         }
         ArrayAdapter<String> adapater = new ArrayAdapter<String>(this, R.layout.spinner_item, floors);
         adapater.setDropDownViewResource(R.layout.spinner_dropdown_item);
@@ -56,10 +56,10 @@ public class ListAvailableRooms extends AppCompatActivity {
     public void SearchRooms(View view) {
         Intent i = new Intent(this, PotentialRooms.class);
         startActivity(i);
-        }
-        // read from the main file and return the avalaible spaces
+    }
+    // read from the main file and return the avalaible spaces
 
-        // if itts >= what they want then add to array list
+    // if itts >= what they want then add to array list
 
     public void home(View view) {
         Intent i = new Intent(this, HomeScreen.class);

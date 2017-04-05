@@ -23,8 +23,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.mysql.jdbc.*;
-
 /*
 Floor plan for the room selected in the previous form,
 updated by the Arduinos from the server
