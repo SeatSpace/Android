@@ -53,7 +53,9 @@ public class FloorLayout extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSQLData();
+
+        getSQLData(); // gets intial data to load the form
+
         setTitle("Room View");
         setContentView(R.layout.activity_floorlayout);
         btn1 = (Button) findViewById(R.id.btn1);
@@ -87,8 +89,17 @@ public class FloorLayout extends AppCompatActivity {
                             @Override
                             public void run() {
                                 try {
+                                    // gets the data from the file
                                     getFile(building, floor, room); // put the building floor and room in to the search
                                     updateButtons();
+
+                                    // same as update buttons but with SQL
+                                    // will need to pass the room number in as the query when more rooms are in the database
+                                    // getSQLData(/* Building/room number as query*/);
+                                    // updateButtonsWithSQL();
+
+
+
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -265,6 +276,10 @@ public class FloorLayout extends AppCompatActivity {
                     String query = "SELECT * FROM Floor3";
                     // Execute the query and store the results in a set
                     ResultSet rs = statement.executeQuery(query);
+
+                    // clears the old data to read in the next set
+                    tables.clear();
+
                     // While the next set exists...
                     while (rs.next()) {
                         // Get the 3 columns
@@ -275,7 +290,7 @@ public class FloorLayout extends AppCompatActivity {
                         Table table = new Table(Integer.parseInt(id), Boolean.parseBoolean(taken), time);
 
                         // Linear Search algorithm
-                        boolean doesExist = false;
+                        /*boolean doesExist = false;
                         for (Table t : tables) {
                             if (table.getId() == t.getId()) {
                                 doesExist = true;
@@ -285,7 +300,9 @@ public class FloorLayout extends AppCompatActivity {
                         }
                         if (!doesExist) {
                             tables.add(table);
-                        }
+                        }*/
+
+                        tables.add(table);
 
                         // And print them
                         System.out.println("ID: " + id);
