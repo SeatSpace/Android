@@ -32,17 +32,17 @@ public class FloorLayout extends AppCompatActivity {
     TextView availableNo;
     TextView totalNo;
 
-    Button btn1;
-    Button btn2;
-    Button btn3;
-    Button btn4;
-    Button btn5;
-    Button btn6;
-    Button btn7;
-    Button btn8;
-    Button btn9;
+    TextView btn1;
+    TextView btn2;
+    TextView btn3;
+    TextView btn4;
+    TextView btn5;
+    TextView btn6;
+    TextView btn7;
+    TextView btn8;
+    TextView btn9;
 
-    ArrayList<Button> buttons = new ArrayList<>();
+    ArrayList<TextView> buttons = new ArrayList<>();
     ArrayList<Table> tables = new ArrayList<>();
     private int total = 54;
     private int available = 54;
@@ -57,15 +57,15 @@ public class FloorLayout extends AppCompatActivity {
         getSQLData(); // gets intial data to load the form
 
         setTitle("Room View");
-        setContentView(R.layout.activity_floorlayout);
-        btn1 = (Button) findViewById(R.id.btn1);
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn4 = (Button) findViewById(R.id.btn4);
-        btn5 = (Button) findViewById(R.id.btn5);
-        btn6 = (Button) findViewById(R.id.btn6);
-        btn7 = (Button) findViewById(R.id.btn7);
-        btn8 = (Button) findViewById(R.id.btn8);
+        setContentView(R.layout.activity_floorlayout2);
+        btn1 = (TextView) findViewById(R.id.btn1);
+        btn2 = (TextView) findViewById(R.id.btn2);
+        btn3 = (TextView) findViewById(R.id.btn3);
+        btn4 = (TextView) findViewById(R.id.btn4);
+        btn5 = (TextView) findViewById(R.id.btn5);
+        btn6 = (TextView) findViewById(R.id.btn6);
+        btn7 = (TextView) findViewById(R.id.btn7);
+        btn8 = (TextView) findViewById(R.id.btn8);
 
         addButtons();
         Intent i = getIntent();
@@ -91,7 +91,7 @@ public class FloorLayout extends AppCompatActivity {
                                 try {
                                     // gets the data from the file
                                     getFile(building, floor, room); // put the building floor and room in to the search
-                                    updateButtons();
+                                    updateTables();
 
                                     // same as update buttons but with SQL
                                     // will need to pass the room number in as the query when more rooms are in the database
@@ -174,7 +174,7 @@ public class FloorLayout extends AppCompatActivity {
         }
     }
 
-    public void updateButtons() {
+    public void updateTables() {
         try {
             // Create a URL for the desired page
             URL url = new URL("http://kkmonlee.com/launchpad/arduino1.txt");
