@@ -78,6 +78,7 @@ public class FloorLayout extends AppCompatActivity {
 
         availableNo = (TextView) findViewById(R.id.availableNo);
         totalNo = (TextView) findViewById(R.id.totalNo);
+
         running = true;
         thread = new Thread(new Runnable() {
             @Override
@@ -227,7 +228,6 @@ public class FloorLayout extends AppCompatActivity {
 
     public void updateButtonsWithSQL() {
         try {
-
             // loop through the arraylist of tables
             for (int i = 0; i < tables.size(); i++) {
                 // Gets the background color of the button

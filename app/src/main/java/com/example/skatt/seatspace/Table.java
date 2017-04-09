@@ -1,9 +1,10 @@
 package com.example.skatt.seatspace;
 
 public class Table {
-    private int id;
+    private int id, x,y,width, height;
     private boolean isTaken;
     private String time;
+
 
     public Table(int ID, boolean IsTaken, String timeStamp) {
         this.id = ID;

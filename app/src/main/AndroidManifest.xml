@@ -21,7 +21,11 @@
         <activity android:name=".FloorLayout" />
         <activity android:name=".ChooseRoom" />
         <activity android:name=".ListAvailableRooms" />
-        <activity android:name=".PotentialRooms"></activity>
+        <activity android:name=".PotentialRooms" />
+        <activity
+            android:name=".DynamicFloor"
+            android:label="@string/title_activity_dynamic_floor"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

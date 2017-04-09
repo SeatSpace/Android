@@ -14,7 +14,7 @@ public class PotentialRooms extends AppCompatActivity {
     }
 
     public void view(View view) {
-        Intent i = new Intent(this, FloorLayout.class);
+        Intent i = new Intent(this, DynamicFloor.class);
         startActivity(i);
     }
 
