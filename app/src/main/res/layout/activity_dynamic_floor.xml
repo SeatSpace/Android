@@ -63,12 +63,11 @@
 
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
-
-
-    </FrameLayout>
+        android:id="@+id/tableFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"></FrameLayout>
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="70dp"

@@ -217,13 +217,11 @@ public class FloorLayout extends AppCompatActivity {
     Home button
      */
     public void home(View view) {
-        System.out.println("asdf");
         running = false;
         finish();
         //thread.interrupt();
         Intent i = new Intent(this, HomeScreen.class);
         startActivity(i);
-
     }
 
     public void updateButtonsWithSQL() {
@@ -287,7 +285,7 @@ public class FloorLayout extends AppCompatActivity {
                         String taken = rs.getObject(2).toString();
                         String time = rs.getObject(3).toString();
 
-                        Table table = new Table(Integer.parseInt(id), Boolean.parseBoolean(taken), time);
+                        Table table = new Table(Integer.parseInt(id), Boolean.parseBoolean(taken), time, new TextView(FloorLayout.this));
 
                         // Linear Search algorithm
                         /*boolean doesExist = false;
